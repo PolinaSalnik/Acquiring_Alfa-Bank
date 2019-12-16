@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Альфа-Банк</title>
+  <meta name="viewport" content="width=device-width"/>
+
+  <link type="text/css" rel="stylesheet" media="all" href="modules/sbp-nspk-pay/style.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/normalize.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/grid.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/styles.css?v=20191114" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/modal.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/currency-font.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/custom_style.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="modules/mastercard-installments/style.css?v=20191021" />
+
+  <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery.timers-1.2.js"></script>
+  <script type="text/javascript" src="js/jquery.url.js"></script>
+  <script type="text/javascript" src="js/payment.validation.js"></script>
+  <script type="text/javascript" src="js/xss.js"></script>
+  <script type="text/javascript" src="js/payment.utils.js"></script>
+  <script type="text/javascript" src="js/localization.js"></script>
+
+  <script type="text/javascript" src="modules/payment-systems/jquery.payment-systems.js?v=20190307"></script>
+  <script type="text/javascript" src="modules/module-loader/jquery.module-loader.js?v=20190419"></script>
+  <script type="text/javascript" src="modules/apple-pay/jquery.payment.apple-pay.js"></script>
+  <script type="text/javascript" src="modules/samsung-pay/jquery.payment.samsung-pay.js"></script>
+  <script type="text/javascript" src="modules/google-pay/jquery.payment.google-pay.js?v=20190826"></script>
+  <script type="text/javascript" src="modules/mastercard-installments/jquery.mc-installments.js?v=20191021"></script>
+  <script type="text/javascript" src="modules/sbp-nspk-pay/jquery.sbp-nskp-pay.js?v=20191002"></script>
+
+  <script type="text/javascript" src="js/jquery.arcticmodal-0.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery.payment_new_v2.js?v=20190904"></script>
+  <script type="text/javascript" src="js/jquery.payment_extend.js"></script>
+  <script type="text/javascript" src="js/payment.user-agent.js"></script>
+  <script type="text/javascript" src="merchants/js/jquery.page.js"></script>
+</head>
+<body>
+  <div class="container container-main">
+    <header>
+      <div class="row">
+        <div class="col-sm-8 col-xs-12">
+          <!-- Bank logo -->
+          <div class="bank-logo">
+            <img src="img/logo.svg" height="50" alt="Альфа-Банк" onError="$(this).closest('header').hide()"/>
+          </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+          <!-- Merchant logo -->
+          <div class="merchant-logo">
+            <img src="" height="50" alt="" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+       <!-- Order info -->
+      <section class="order-info">
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">Номер заказа</div>
+          <div class="col-sm-8 col-xs-12 text_bold" id="orderNumber">-</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">Сумма</div>
+          <div class="col-sm-8 col-xs-12 text_bold">
+            <span id="amount">0,00</span>
+            <span class="currency">RUB</span>
+          </div>
+        </div>
+        <div id="feeBlock" class="row" style="display: none">
+          <div class="col-sm-4 col-xs-12">Комиссия</div>
+          <div class="col-sm-8 col-xs-12 text_bold">
+            <span id="feeAmount">0,00</span>
+            <span class="currency">RUB</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">Бонусы</div>
+          <div class="col-sm-8 col-xs-12 text_bold" id="bonusAmount">-</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-xs-12" id="numberCountdown">До окончания сессии</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-xs-12" id="description"></div>
+        </div>
+      </section>
+      <hr>
+      <section class="back-to-shop" style="display: none">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <a href="#" class="back-to-shop__link" rel="noopener noreferrer">Вернуться в магазин</a>
+          </div>
+        </div>
+        <hr>
+      </section>
+      <section class="payment-data">
+        <div class="row">
+          <div class="col-sm-5 col-xs-12 payment-logos__text">К оплате принимаются</div>
+          <div class="col-sm-7 col-xs-12 payment-logos">
+            <span class="helper"></span>
+          </div>
+        </div>
+
+        <!-- PAYMENT BINDNIGS FORM BEGIN-->
+        <form action="" id="formBinding" style="display: none;">
+          <div class="row">
+            <div class="col-sm-5 col-xs-12">
+              <label for="bindingId">Выберите карту</label>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+              <select id="bindingId" class="bindings-select"></select>
+              <button id="deactiveBindingBtn" class="trash" type="button" title="Удалить карту"></button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-5 col-xs-12">
+              <label for="cvc_binding">CVC2 / CVV2 код</label>
+            </div>
+            <div class="col-sm-3 col-xs-4">
+              <div class="cvc_binding-validation">
+                <input type="password" id="cvc_binding" name="cvc" class="input-mini" maxlength="3">
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-8 col-no-padding-left">
+              <div class="tip">
+                Код CVC2 (CVV2) - это трехзначное число, обозначенное на обороте карты.
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- PAYMENT BINDNIGS FORM END-->
+
+        <div class="row" id="returnToBindingsBlock" style="display: none;">
+          <div class="col-sm-12 text_right">
+            <a href="#" id="returnToBindings">Выбрать сохраненную карту</a>
+          </div>
+        </div>
+
+        <!-- PAYMENT FORM BEGIN-->
+        <form action="#" method="post" id="formPayment">
+          <section style="display: none;">
+            <input type="email" name="autofillemail" id="autofillemail">
+            <input type="password" name="cvc" id="autofillpassword">
+            <input type="tel" name="autofilltel" id="autofilltel">
+            <input type="text" name="text" id="autofilltext">
+          </section>
+          <div class="row">
+            <div class="col-sm-5 col-xs-12">
+              <label for="pan_sub">Номер карты</label>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+              <div class="pan-validation">
+                <div class="pan-card-type"></div>
+                <input type="hidden" id="pan" class="form_fluid" name="cardnumber">
+                <input type="tel" id="pan_sub" class="form_fluid" maxlength="23">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-5 col-xs-12">
+              <label for="month">Срок действия карты</label>
+            </div>
+            <div class="year-validation">
+              <div class="col-sm-5 col-xs-8">
+                <select name="month" id="month" class="form_fluid">
+                  <option value="01" selected> 1 - январь</option>
+                  <option value="02"> 2 - февраль</option>
+                  <option value="03"> 3 - март</option>
+                  <option value="04"> 4 - апрель</option>
+                  <option value="05"> 5 - май</option>
+                  <option value="06"> 6 - июнь</option>
+                  <option value="07"> 7 - июль</option>
+                  <option value="08"> 8 - август</option>
+                  <option value="09"> 9 - сентябрь</option>
+                  <option value="10">10 - октябрь</option>
+                  <option value="11">11 - ноябрь</option>
+                  <option value="12">12 - декабрь</option>
+                </select>
+              </div>
+              <div class="col-sm-2 col-xs-4 col-no-padding-left">
+                <select name="year" id="year" class="form_fluid"></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-5 col-xs-12">
+              <label for="cardholder">Имя владельца карты</label>
+            </div>
+            <div class="col-sm-7 col-xs-12">
+              <div class="cardholder-validation">
+                <input type="text" id="cardholder" class="form_fluid text_uppercase form_fluid" name="cardholder" maxlength="90" autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-5 col-xs-12">
+              <label for="cvc">CVC2 / CVV2 код</label>
+            </div>
+            <div class="col-sm-3 col-xs-4">
+              <div class="cvc-validation">
+                <input type="password" id="cvc" name="cvc" class="cvc" maxlength="3" autocomplete="off">
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-8 col-no-padding-left">
+              <div class="tip">
+                Код CVC2 (CVV2) - это трехзначное число, обозначенное на обороте карты.
+              </div>
+            </div>
+          </div>
+
+          <div class="row" id="bindingBlock" style="display: none;">
+            <div class="col-sm-5 col-xs-12"></div>
+            <div class="col-sm-7 col-xs-12">
+              <input type="checkbox" id="createBinding" class="binding-checkbox-input"/>
+              <div class="binding-checkbox"></div>
+              <label for="createBinding">Запомнить данные этой карты</label>
+            </div>
+          </div>
+        </form>
+
+        <div id="emailContainer" class="row" style="display:none;">
+          <div class="col-sm-5 col-xs-12">
+            <label for="email">Электронная почта</label>
+          </div>
+          <div class="col-sm-7 col-xs-12">
+            <div class="email-validation">
+              <input type="email" id="email" class="form_fluid" name="email" maxlength="90" autocomplete="email">
+            </div>
+            <div id="emailDescription" class="description" style="display: none;">
+              Нам понадобится ваша электронная почта, чтобы мы могли отправить на нее уведомление о платеже.
+            </div>
+            <div id="emailDescriptionOfd" class="description  description-ofd" style="display: none;">
+              Нам понадобится ваша электронная почта, чтобы мы могли отправить на нее чек, как того требует ФЗ №54.
+            </div>
+          </div>
+        </div>
+
+        <div id="phoneContainer" class="row" style="display:none;">
+          <div class="col-sm-5 col-xs-12">
+            <label for="phone">Номер телефона</label>
+          </div>
+          <div class="col-sm-7 col-xs-12">
+            <div class="phone-validation">
+              <div class="phone-input">
+                <div class="phone-input__prefix">
+                  +7
+                </div>
+                <div class="phone-input__number">
+                  <input type="phone" id="phone" class="form_fluid additional-param" name="phone" maxlength="10" autocomplete="tel">
+                </div>
+              </div>
+            </div>
+            <div id="phoneDescription" class="description" style="display: none;">
+              Нам понадобится ваш номер телефона, чтобы мы могли отправить на него уведомление о платеже.
+            </div>
+            <div id="phoneDescriptionOfd" class="description description-ofd" style="display: none;">
+              Нам понадобится ваш номер телефона, чтобы мы могли отправить на него чек, как того требует ФЗ №54
+            </div>
+          </div>
+        </div>
+
+        <div class="row" id="agreeBlock" style="display: none;">
+          <div class="col-sm-5 col-xs-12"></div>
+          <div class="col-sm-7 col-xs-12">
+            <div class="agreeCheckbox-validation">
+              <input type="checkbox" id="agreeCheckbox" class="agree-checkbox-input"/>
+              <div class="agree-checkbox"></div>
+              <label for="agreeCheckbox" class="agree-checkbox-label">Я ознакомлен и принимаю условия <a id="agreeHref" href="#" target="_blank" rel="noopener noreferrer">договора-оферты</a></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row warning">
+          <div class="col-sm-12">
+            <img src="img/warning.svg" alt="" height="40" align="left">
+            <div class="tip">
+              В случае если Ваш банк поддерживает технологию безопасного проведения
+              интернет-платежей <span class="verify-text"></span>, для проведения платежа может потребоваться ввод
+              специального пароля. Способы и возможности получения паролей для совершения интернет-платежей Вы можете уточнить
+              в банке, выпустившем карту.
+            </div>
+          </div>
+        </div>
+
+        <div class="row payment-way">
+          <div class="col-md-6 col-sm-6 col-xs-12 payment-way__apple-pay" style="display: none"></div>
+          <div class="col-md-6 col-sm-6 col-xs-12 payment-way__samsung-pay" style="display: none"></div>
+          <div class="col-md-6 col-sm-6 col-xs-12 payment-way__google-pay" style="display: none"></div>
+          <div class="col-md-6 col-sm-6 col-xs-12 payment-way__mastercard-installments" style="display: none"></div>
+          <div class="col-md-6 col-sm-6 col-xs-12 payment-way__sbp-nspk-pay" style="display: none"></div>
+        </div>
+        <div class="row row-button">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <button type="button" id="buttonPayment" class="button">Оплатить</button>
+          </div>
+          <div class="col-md-6 col-sm-8 col-xs-12">
+            <div id="indicator" class="ajax-loader" style="display: none;">
+              <img src="img/ajax-loader.gif" height="19" width="220" alt="indicator" />
+            </div>
+            <div id="errorBlock" class="error-text"></div>
+            <div id="infoBlock"></div>
+          </div>
+        </div>
+        <!-- PAYMENT FORM END-->
+      </section>
+
+      <section class="modals" hidden>
+        <div id="modal-deactivate-binding" class="box-modal">
+          <h3>Удаление карты</h3>
+          <p>Вы действительно хотите удалить привязанную карту?</p>
+          <div class="center">
+            <button type="button" id="deactiveBinding" class="button arcticmodal-close" title="Удалить">ОК</button>
+            <button type="button" class="button cancel arcticmodal-close" title="Отмена">Отмена</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <hr>
+
+    <footer>
+      <div class="row">
+        <div class="col-sm-12 verify">
+          <span class="helper"></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="text-mini">
+            Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается
+            ЗАО «Альфа-Банк». Введенная информация не будет предоставлена третьим лицам за исключением случаев, предусмотренных
+            законодательством&nbsp;РБ. Проведение платежей по банковским картам осуществляется в строгом соответствии
+            с требованиями платежных систем <span class="payment-text"></span>.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="footer" class="text-mini"></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <form id="acs" method="post" action="">
+    <input type="hidden" id="MD" name="MD"/>
+    <input type="hidden" id="PaReq" name="PaReq"/>
+    <input type="hidden" id="TermUrl" name="TermUrl"/>
+  </form>
+  <script type="text/javascript" src="merchants/js/init_ru.js"></script>
+</body>
+</html>

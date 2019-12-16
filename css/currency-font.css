@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'currency-font';
+  src: url('../fonts/currency-font.eot?5mehhu');
+  src: url('../fonts/currency-font.eot?5mehhu#iefix') format('embedded-opentype'),
+  url('../fonts/currency-font.ttf?5mehhu') format('truetype'),
+  url('../fonts/currency-font.woff?5mehhu') format('woff'),
+  url('../fonts/currency-font.svg?5mehhu#currency-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.currency-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'currency-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  position: relative;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.currency-icon.UAH:before {
+  content: "\e900";
+}
+
+.currency-icon.KZT:before {
+  content: "\e901";
+}
+
+.currency-icon.EUR:before {
+  content: "\e800";
+}
+
+.currency-icon.GBP:before {
+  content: "\e801";
+}
+
+.currency-icon.USD:before {
+  content: "\e802";
+}
+
+.currency-icon.JPY:before,
+.currency-icon.CNY:before {
+  content: "\e803";
+}
+
+.currency-icon.RUR:before,
+.currency-icon.RUB:before {
+  content: "\e804";
+}
+
+.currency-icon.KPW:before,
+.currency-icon.KRW:before {
+  content: "\e805";
+}
+
+.currency-icon.bitcoin:before {
+  content: "\e806";
+}
+
+.currency-icon.INR:before {
+  content: "\e807";
+}
+
+.currency-icon.BYR:before {
+  font-family: Arial !important;
+  content: "Ð‘ÐµÐ». Ñ€ÑƒÐ±.";
+}
+
+.currency-icon.BYN:before {
+  font-family: Arial !important;
+  content: "BYN";
+}
+
+.currency-icon.KGS:before {
+  font-family: Arial !important;
+  content: "ÑÐ¾Ð¼.";
+}

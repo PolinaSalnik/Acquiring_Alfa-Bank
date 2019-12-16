@@ -1,0 +1,99 @@
+.arcticmodal-overlay,
+.arcticmodal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.arcticmodal-container {
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-collapse: collapse;
+}
+
+*:first-child + html .arcticmodal-container {
+  height: 100%
+}
+
+.arcticmodal-container_i {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.arcticmodal-container_i2 {
+  padding: 24px;
+  margin: 0;
+  border: 0;
+  vertical-align: middle;
+}
+
+.arcticmodal-error {
+  padding: 20px;
+  border-radius: 10px;
+  background: #000;
+  color: #fff;
+}
+
+.arcticmodal-loading {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background: #000 url(../img/loading.gif) no-repeat 50% 50%;
+}
+
+.box-modal {
+  position: relative;
+  max-width: 650px;
+  padding: 1.5rem 2rem;
+  color: #444;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background: #f7f7f7;
+  -webkit-box-shadow: 0 0 0 6px rgba(153, 153, 153, 0.3);
+  box-shadow: 0 0 0 6px rgba(153, 153, 153, 0.3);
+}
+
+.box-modal h3 {
+  margin-top: 0;
+}
+
+.box-modal .button {
+  min-width: 100px;
+  padding: 8px;
+}
+
+.box-modal .button + .button {
+  margin: 10px 0 0 0;
+}
+
+.box-modal .cancel {
+  background-color: #cdcdcd;
+  border: 1px solid #cdcdcd;
+  color: #636363;
+}
+
+.box-modal .cancel:hover {
+  background-color: #c0c0c0;
+  border: 1px solid #c0c0c0;
+  color: #333;
+}
+
+
+@media (max-width: 380px) {
+  .arcticmodal-container_i2 {
+    padding: 10px;
+  }
+
+  .box-modal {
+    padding: .8rem;
+  }
+
+  .box-modal .button + .button {
+    margin: 5px 0 0 0;
+  }
+}

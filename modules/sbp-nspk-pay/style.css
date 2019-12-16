@@ -1,0 +1,150 @@
+.rbs-sbp__main-button.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #fff;
+  padding: 0;
+}
+.rbs-sbp__main-button.button:hover {
+  background-color: #3c4043;
+}
+.rbs-sbp__modal-window {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transition: all 0.1s linear;
+}
+.rbs-sbp__modal-window--hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+.ie .rbs-sbp__modal-window--hidden {
+  display: none;
+}
+.rbs-sbp__modal-window-inner {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 322px;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.rbs-sbp__modal-head {
+  min-height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+.rbs-sbp__modal-content {
+  padding: 0 10px;
+  min-height: 310px;
+  min-width: 302px;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.rbs-sbp__qr-container canvas {
+  transition: all 0.7s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.rbs-sbp__spinner-container {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.35s linear;
+}
+.rbs-sbp__spinner-container--hidden {
+  opacity: 0;
+}
+.ie .rbs-sbp__spinner-container--hidden {
+  display: none;
+}
+.rbs-sbp__spinner {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #2185d0;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.rbs-sbp__modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+.rbs-sbp__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  font: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0 0 5.5px 5.5px;
+  transition: background-color 0.1s linear;
+  font-weight: bold;
+  width: 100%;
+  height: 50px;
+}
+.rbs-sbp__button:disabled {
+  background-color: #eee;
+  color: #AAA;
+}
+.rbs-sbp__button:focus {
+  outline: 0;
+}
+.rbs-sbp__button--recheck {
+  background-color: #2185d0;
+  color: #fff;
+}
+.rbs-sbp__button--recheck:hover {
+  background-color: #1e77ba;
+}
+.rbs-sbp__button-icon {
+  margin-right: 7px;
+  width: 15px;
+  height: 15px;
+}
+.rbs-sbp__qr-img {
+  width: 100%;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+.rbs-sbp__error-message {
+  color: red;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,449 @@
+.rbs-mc-installments__content {
+  height: 100%;
+  padding: 1em 1.5em;
+  display: flex;
+  flex-direction: column;
+}
+.rbs-mc-installments__modal-title {
+  color: #ff9900;
+  font-size: 1.4em;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+.rbs-mc-installments__modal-main {
+  flex: 1;
+  overflow: auto;
+}
+.rbs-mc-installments__modal-main--center {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-height: 560px) {
+  .rbs-mc-installments__modal-main--center {
+    align-items: center;
+  }
+}
+.rbs-mc-installments__main-button.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #fff;
+  flex-direction: column;
+  padding: 0;
+  font-size: 16px;
+  line-height: 20px;
+}
+.rbs-mc-installments__main-button.button img {
+  height: 20px;
+}
+.rbs-mc-installments__main-button.button:hover {
+  background-color: #3c4043;
+}
+.rbs-mc-installments__main-button.button:disabled {
+  background-color: #111;
+}
+.rbs-mc-installments__main-button--hidden {
+  display: none;
+}
+.payment-way .rbs-mc-installments__main-button {
+  display: flex !important;
+}
+.payment-way .rbs-mc-installments__main-button--hidden {
+  display: none !important;
+}
+.rbs-mc-installments__modal-window {
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.99);
+  opacity: 1;
+  transition: all 0.1s linear;
+}
+@media screen and (min-width: 720px) and (min-height: 560px) {
+  .rbs-mc-installments__modal-window {
+    justify-content: center;
+    padding-top: 3.5em;
+  }
+}
+.rbs-mc-installments__modal-window--hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+.ie .rbs-mc-installments__modal-window--hidden {
+  display: none;
+}
+.rbs-mc-installments__modal-window-inner {
+  display: flex;
+  flex-direction: column;
+  background-color: #454C53;
+  color: #FFFBF6;
+  width: 100%;
+  height: 100vh;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.16), 0 8px 8px rgba(0, 0, 0, 0.2);
+}
+@media screen and (min-width: 720px) and (min-height: 560px) {
+  .rbs-mc-installments__modal-window-inner {
+    width: 350px;
+    height: 450px;
+  }
+}
+.rbs-mc-installments__modal-window-head {
+  font-size: 12px;
+  top: 0;
+  right: 0;
+  left: 0;
+  min-height: 3.5em;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  background-color: #26282B;
+  color: #FFFBF6;
+}
+@media screen and (min-width: 720px) and (min-height: 560px) {
+  .rbs-mc-installments__modal-window-head {
+    position: absolute;
+    font-size: 16px;
+    justify-content: center;
+  }
+}
+.rbs-mc-installments__close-button-container {
+  position: absolute;
+  width: 1.75em;
+  height: 1.75em;
+  top: 0.875em;
+  right: 1.1666666667em;
+}
+.rbs-mc-installments__close-button-container img {
+  width: 100%;
+  height: 100%;
+}
+.rbs-mc-installments__close-button {
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.rbs-mc-installments__close-button:focus {
+  outline: 0;
+}
+.rbs-mc-installments__spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.rbs-mc-installments__spinner {
+  border: 10px solid #FFFBF6;
+  border-top: 10px solid #ff9900;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.rbs-mc-installments__error-message {
+  color: red;
+}
+.rbs-mc-installments__head-logo {
+  height: 2.1em;
+}
+.rbs-mc-installments__head-left {
+  display: flex;
+  padding-left: 1.1666666667em;
+}
+.rbs-mc-installments__head-right {
+  display: flex;
+}
+.rbs-mc-installments__head-separator {
+  margin: 0 15px;
+}
+.rbs-mc-installments__head-separator:after {
+  content: "";
+  height: 2.45em;
+  width: 1px;
+  background-color: #FFFBF6;
+  display: block;
+}
+.rbs-mc-installments__offer-text {
+  text-align: justify;
+  font-size: 0.9em;
+  padding-right: 0.5em;
+}
+.rbs-mc-installments__proposal-details {
+  font-size: 0.95em;
+  margin: auto;
+}
+.rbs-mc-installments__proposal-details td {
+  vertical-align: top;
+  padding-bottom: 0.2em;
+}
+.rbs-mc-installments__proposal-details td:nth-child(2n) {
+  font-weight: bold;
+  min-width: 80px;
+  font-size: 1.025em;
+  white-space: nowrap;
+}
+.rbs-mc-installments__proposal-details hr {
+  margin: 10px 0;
+  border-bottom: 1px solid #ff9900;
+}
+.rbs-mc-installments__proposal-details-space {
+  min-height: 10px;
+}
+.rbs-mc-installments__proposal-list {
+  font-size: 1.2em;
+  padding-top: 5px;
+}
+@media screen and (min-height: 560px) {
+  .rbs-mc-installments__proposal-list {
+    padding-top: 0;
+  }
+}
+.rbs-mc-installments__proposal-list-item {
+  height: 1.6em;
+  margin-bottom: 0.75em;
+}
+.rbs-mc-installments__step-counter {
+  text-align: center;
+  font-size: 0.85em;
+  color: #ff9900;
+  display: none;
+}
+@media screen and (min-height: 400px) {
+  .rbs-mc-installments__step-counter {
+    display: inherit;
+  }
+}
+.rbs-mc-installments__modal-buttons {
+  display: flex;
+}
+@media screen and (min-height: 400px) {
+  .rbs-mc-installments__modal-buttons {
+    margin-bottom: 1em;
+  }
+}
+.rbs-mc-installments__modal-buttons > :not(:last-child) {
+  margin-right: 0.5em;
+}
+.rbs-mc-installments__modal-buttons button {
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.85em 0;
+  color: #FFFBF6;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  text-align: center;
+  background-color: #ff9900;
+  transition: background-color 50ms linear;
+}
+.rbs-mc-installments__modal-buttons button > * {
+  width: 100%;
+}
+.rbs-mc-installments__modal-buttons button:hover {
+  background-color: #f29100;
+}
+.rbs-mc-installments__modal-buttons button:active {
+  background-color: #e68a00;
+}
+.rbs-mc-installments__modal-buttons button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(212, 215, 219, 0.5);
+}
+.rbs-mc-installments__modal-buttons button:disabled {
+  background-color: #9FA4AA;
+}
+.rbs-mc-installments__radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  margin: 10px 0 0 7px;
+}
+.rbs-mc-installments__radio + label {
+  position: relative;
+  padding: 0 0 0 35px;
+  cursor: pointer;
+}
+.rbs-mc-installments__radio + label:before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #FFFBF6;
+  border-radius: 50%;
+}
+.rbs-mc-installments__radio + label:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ff9900;
+  opacity: 0;
+  transition: 0.1s;
+}
+.rbs-mc-installments__radio:checked + label:after {
+  opacity: 1;
+}
+.rbs-mc-installments__radio:focus + label:before {
+  box-shadow: 0 0 0 2px rgba(212, 215, 219, 0.5);
+}
+.rbs-mc-installments__checkbox-label {
+  cursor: pointer;
+}
+.rbs-mc-installments__checkbox {
+  display: none;
+}
+.rbs-mc-installments__checkbox-label {
+  display: flex;
+  align-items: center;
+}
+.rbs-mc-installments__checkbox-text {
+  font-size: 1.2em;
+}
+.rbs-mc-installments__checkbox + .rbs-mc-installments__checkbox-decor {
+  content: "";
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  background-color: #FFFBF6;
+  border: 1px solid #393B3D;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: relative;
+}
+.rbs-mc-installments__checkbox + .rbs-mc-installments__checkbox-decor:before {
+  width: 1.2em;
+  height: 2px;
+  background-color: #393B3D;
+  content: "";
+  position: absolute;
+  top: calc(0.6em - 1px);
+  transition: 0.12s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transform: scale(0) rotate(45deg);
+}
+.rbs-mc-installments__checkbox + .rbs-mc-installments__checkbox-decor:after {
+  width: 1.2em;
+  height: 2px;
+  background-color: #393B3D;
+  content: "";
+  position: absolute;
+  top: calc(0.6em - 1px);
+  transition: 0.12s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transform: scale(0) rotate(-45deg);
+}
+.rbs-mc-installments__checkbox:checked + .rbs-mc-installments__checkbox-decor:before {
+  width: 1.2em;
+  height: 2px;
+  background-color: #393B3D;
+  content: "";
+  position: absolute;
+  top: calc(0.6em - 1px);
+  transition: 0.12s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transform: scale(1) rotate(45deg);
+}
+.rbs-mc-installments__checkbox:checked + .rbs-mc-installments__checkbox-decor:after {
+  width: 1.2em;
+  height: 2px;
+  background-color: #393B3D;
+  content: "";
+  position: absolute;
+  top: calc(0.6em - 1px);
+  transition: 0.12s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transform: scale(1) rotate(-45deg);
+}
+.rbs-mc-installments__agree-container {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+.rbs-mc-installments__table-separator {
+  height: 0.8em;
+}
+.rbs-mc-installments__return-container {
+  margin: 1em 0;
+  display: none;
+}
+@media screen and (min-width: 720px) and (min-height: 560px) {
+  .rbs-mc-installments__return-container {
+    justify-content: center;
+    display: block;
+  }
+}
+.rbs-mc-installments__return-button {
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75em;
+  text-decoration: underline;
+  opacity: 0.75;
+  transition: opacity 0.1s linear;
+}
+.rbs-mc-installments__return-button:hover {
+  opacity: 1;
+}
+.rbs-mc-installments__return-button:focus {
+  outline: 0;
+  opacity: 1;
+}
+.rbs-mc-installments__space-filler {
+  flex: 1;
+  display: none;
+}
+@media screen and (min-width: 720px) and (min-height: 560px) {
+  .rbs-mc-installments__space-filler {
+    display: initial;
+  }
+}
+.rbs-mc-installments__space-filler--bottom {
+  flex: 3;
+}
+.rbs-mc-installments__modal-footer {
+  user-select: none;
+}
+
+.no-proposals {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+body, html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=style.css.map */
